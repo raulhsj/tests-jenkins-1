@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Checkout-git') {
       steps {
-        withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'raulhsj-SSH', \
+        withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'cadc4801-ca68-4fdd-8aa7-46fcd9e4b976', \
                                                      keyFileVariable: '', \
                                                      passphraseVariable: '', \
                                                      usernameVariable: '')]) {
