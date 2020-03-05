@@ -13,7 +13,8 @@ pipeline {
                                                      keyFileVariable: '', \
                                                      passphraseVariable: '', \
                                                      usernameVariable: '')]) {
-        git poll: true, url: 'git@github.com:raulhsj/tests-jenkins-1.git'
+          git poll: true, url: 'git@github.com:raulhsj/tests-jenkins-1.git'
+        }
       }
     }
     stage('Going to target dir') {
@@ -23,7 +24,6 @@ pipeline {
           npm i
           npm run cover
         '''
-        }
       }
     }
     stage('Building dockerHub image') {
