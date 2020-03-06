@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Checkout-git') {
       steps {
-        sshagent(credentials: ['cadc4801-ca68-4fdd-8aa7-46fcd9e4b976']) {
+        sshagent(credentials: ['raulhsj-SSH']) {
           git poll: true, url: 'git@github.com:raulhsj/tests-jenkins-1.git'
         }
       }
