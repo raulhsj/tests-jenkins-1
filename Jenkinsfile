@@ -5,9 +5,7 @@ pipeline {
     dockerImage = ''
   }
   agent {
-    docker {
-      label 'docker'
-    }
+    label 'docker'    
   }
   tools { nodejs "node 12.15.0" }
   stages {
