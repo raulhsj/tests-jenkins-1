@@ -4,9 +4,7 @@ pipeline {
     registryCredential = 'raulhsj/******'
     dockerImage = ''
   }
-  agent {
-    label 'docker'    
-  }
+  agent any
   tools { nodejs "node 12.15.0" }
   stages {
     stage('Checkout-git') {
