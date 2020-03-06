@@ -7,14 +7,16 @@ pipeline {
   agent any
   tools { nodejs "node 12.15.0" }
   stages {
-    node {
-      checkout scm
+    stage('Checking out and setting up project') {
+      node {
+        checkout scm
 
-      sh '''
-        cd jenkins-node-sample
-        npm i
-        npm run cover
-      '''
+        sh '''
+          cd jenkins-node-sample
+          npm i
+          npm run cover
+        '''
+      }
     }
     stage('Building dockerHub image') {
       steps {
