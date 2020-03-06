@@ -6,6 +6,8 @@ node {
     dockerImage = ''
   }
 
+  tools { nodejs "node 12.15.0" }
+
   stage('Clone repository') {
       /* Let's make sure we have the repository cloned to our workspace */
 
@@ -13,11 +15,11 @@ node {
   }
 
   stage('Going to target dir') {
-      sh '''
-        cd jenkins-node-sample
-        npm i
-        npm run cover
-      '''
+    sh '''
+      cd jenkins-node-sample
+      npm i
+      npm run cover
+    '''    
   }
 
   stage('Building dockerHub image') {
