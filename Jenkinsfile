@@ -10,9 +10,7 @@ pipeline {
     stage('Checkout-git') {
       steps {
         withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'cadc4801-ca68-4fdd-8aa7-46fcd9e4b976', \
-                                                     keyFileVariable: '', \
-                                                     passphraseVariable: '', \
-                                                     usernameVariable: '')]) {
+                                                     keyFileVariable: 'SSH-KEY-RAULHSJ')]) {
           git poll: true, url: 'git@github.com:raulhsj/tests-jenkins-1.git'
         }
       }
