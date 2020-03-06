@@ -8,14 +8,16 @@ pipeline {
   tools { nodejs "node 12.15.0" }
   stages {
     stage('Checking out and setting up project') {
-      node {
-        checkout scm
+      steps {
+        node {
+          checkout scm
 
-        sh '''
-          cd jenkins-node-sample
-          npm i
-          npm run cover
-        '''
+          sh '''
+            cd jenkins-node-sample
+            npm i
+            npm run cover
+          '''
+        }
       }
     }
     stage('Building dockerHub image') {
