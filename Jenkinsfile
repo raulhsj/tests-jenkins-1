@@ -4,12 +4,14 @@ pipeline {
     registryCredential = 'raulhsj/******'
     dockerImage = ''
   }
-  agent any
+  agent {
+    label 'docker'
+  }
   tools { nodejs "node 12.15.0" }
   stages {
     stage('Checkout-git') {
       steps {
-        git poll: true, credentialsId: 'cadc4801-ca68-4fdd-8aa7-46fcd9e4b976', url: 'git@github.com:raulhsj/tests-jenkins-1.git'        
+        git poll: true, credentialsId: 'cadc4801-ca68-4fdd-8aa7-46fcd9e4b976', url: 'git@github.com:raulhsj/tests-jenkins-1.git'
       }
     }
     stage('Going to target dir') {
