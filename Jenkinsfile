@@ -7,19 +7,14 @@ pipeline {
   agent any
   tools { nodejs "node 12.15.0" }
   stages {
-    stage('Checkout-git') {
-      steps {
-        git poll: true, url: 'git@github.com:raulhsj/tests-jenkins-1.git'        
-      }
-    }
-    stage('Going to target dir') {
-      steps {
-        sh '''
-          cd jenkins-node-sample
-          npm i
-          npm run cover
-        '''
-      }
+    node {
+      checkout scm
+
+      sh '''
+        cd jenkins-node-sample
+        npm i
+        npm run cover
+      '''
     }
     stage('Building dockerHub image') {
       steps {
