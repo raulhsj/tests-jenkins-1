@@ -5,7 +5,7 @@ pipeline {
     dockerImage = ''
   }
   agent {
-    label 'docker'
+    label 'dockerCloud'
   }
   tools { nodejs "node 12.15.0" }
   stages {
