@@ -29,7 +29,7 @@ pipeline {
           docker.withServer('tcp://socat:2375') {
             sh '''
               cd jenkins-node-sample
-              docker build -t jenkins-node-sample:latest' .
+              docker build -t jenkins-node-sample:latest .
             '''
           }
         }
@@ -40,7 +40,7 @@ pipeline {
         script {
           docker.withRegistry('', registryCredential) {
             docker.withServer('tcp://socat:2375') {
-              sh 'docker push raulhsj/jenkins-node-sample'              
+              sh 'docker push raulhsj/jenkins-node-sample'
             }
           }
         }
