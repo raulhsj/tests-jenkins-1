@@ -27,7 +27,9 @@ pipeline {
     stage('Building dockerHub image') {
       steps {
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          docker.withServer('tcp://socat:2375') {
+            dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          }
         }
       }
     }
@@ -35,14 +37,18 @@ pipeline {
       steps {
         script {
           docker.withRegistry('', registryCredential) {
-            dockerImage.push()
+            docker.withServer('tcp://socat:2375') {
+              dockerImage.push()
+            }
           }
         }
       }
     }
     stage('Remove Unused docker image') {
       steps{
-        sh 'docker rmi $registry:$BUILD_NUMBER'
+        docker.withServer('tcp://socat:2375') {
+          sh 'docker rmi $registry:$BUILD_NUMBER'
+        }
       }
     }
   }
