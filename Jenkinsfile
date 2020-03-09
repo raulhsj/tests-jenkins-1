@@ -28,7 +28,7 @@ pipeline {
       steps {
         script {
           docker.withServer('tcp://socat:2375') {
-            docker build -t registry + ":$BUILD_NUMBER"
+            docker build -t registry + ":latest"
           }
         }
       }
@@ -48,7 +48,7 @@ pipeline {
       steps{
         script {
           docker.withServer('tcp://socat:2375') {
-            sh 'docker rmi $registry:$BUILD_NUMBER'
+            sh 'docker rmi $registry:latest'
           }
         }
       }
