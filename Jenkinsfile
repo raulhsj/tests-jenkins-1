@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "jenkins-node-sample"
+    registry = "raulhsj/jenkins-node-sample"
     registryCredential = '3b10e746-e780-43ff-bf9c-70792aad6d47'
     dockerImage = ''
   }
