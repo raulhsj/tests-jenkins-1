@@ -5,7 +5,10 @@ pipeline {
     dockerImage = ''
   }
   agent any
-  tools { nodejs "node 12.15.0" }
+  tools {
+    nodejs "node 12.15.0"
+    'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'latest'
+  }
   stages {
     stage('Checkout-git') {
       steps {
