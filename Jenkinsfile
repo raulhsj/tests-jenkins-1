@@ -28,7 +28,7 @@ pipeline {
       steps {
         script {
           docker.withServer('tcp://socat:2375') {
-            dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            docker build -t registry + ":$BUILD_NUMBER"
           }
         }
       }
@@ -38,7 +38,7 @@ pipeline {
         script {
           docker.withRegistry('', registryCredential) {
             docker.withServer('tcp://socat:2375') {
-              dockerImage.push()
+              docker push registry
             }
           }
         }
