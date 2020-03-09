@@ -24,6 +24,7 @@ pipeline {
     stage('Building dockerHub image') {
       steps {
         script {
+          sh 'cd jenkins-node-sample'
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
