@@ -1,6 +1,5 @@
 pipeline {
   environment {
-    registry = "raulhsj/jenkins-node-sample"
     registryCredential = 'raulhsj/******'
     dockerImage = ''
   }
@@ -28,7 +27,7 @@ pipeline {
       steps {
         script {
           docker.withServer('tcp://socat:2375') {
-            docker build -t registry + ":latest"
+            sh 'docker build -t jenkins-node-sample:latest'
           }
         }
       }
@@ -38,7 +37,7 @@ pipeline {
         script {
           docker.withRegistry('', registryCredential) {
             docker.withServer('tcp://socat:2375') {
-              docker push registry
+              sh 'docker push raulhsj/jenkins-node-sample'
             }
           }
         }
