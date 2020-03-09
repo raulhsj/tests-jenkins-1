@@ -46,8 +46,10 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
-        docker.withServer('tcp://socat:2375') {
-          sh 'docker rmi $registry:$BUILD_NUMBER'
+        script {
+          docker.withServer('tcp://socat:2375') {
+            sh 'docker rmi $registry:$BUILD_NUMBER'
+          }
         }
       }
     }
