@@ -6,7 +6,7 @@ pipeline {
   agent any
   tools {
     nodejs "node 12.15.0"
-    'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
+    'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'latest'
   }
   stages {
     stage('Checkout-git') {
@@ -47,7 +47,7 @@ pipeline {
       steps{
         script {
           docker.withServer('tcp://socat:2375') {
-            sh 'docker rmi $registry:latest'
+            sh 'docker rmi jenkins-node-sample:latest'
           }
         }
       }
