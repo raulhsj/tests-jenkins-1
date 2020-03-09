@@ -41,7 +41,7 @@ pipeline {
             docker.withServer('tcp://socat:2375') {
               sh '''
                 docker login -u $USER -p $PASSWORD
-                docker push raulhsj/jenkins-node-sample'
+                docker push raulhsj/jenkins-node-sample
               '''
             }
           }
