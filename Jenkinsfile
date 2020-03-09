@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registryCredential = '3b10e746-e780-43ff-bf9c-70792aad6d47'    
+    registryCredential = '3b10e746-e780-43ff-bf9c-70792aad6d47'
   }
   agent any
   tools {
@@ -37,9 +37,12 @@ pipeline {
     stage('Deploy dockerHub image') {
       steps {
         script {
-          docker.withRegistry('', registryCredential) {
+          withCredentials([usernamePassword(credentialsId: '3b10e746-e780-43ff-bf9c-70792aad6d47', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
             docker.withServer('tcp://socat:2375') {
-              sh 'docker push raulhsj/jenkins-node-sample'
+              sh '''
+                docker login -u $USER -p $PASSWORD
+                docker push raulhsj/jenkins-node-sample'
+              '''
             }
           }
         }
