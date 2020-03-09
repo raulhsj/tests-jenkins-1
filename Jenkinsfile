@@ -6,7 +6,7 @@ pipeline {
   agent any
   tools {
     nodejs "node 12.15.0"
-    'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'latest'
+    'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
   }
   stages {
     stage('Checkout-git') {
