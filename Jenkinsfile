@@ -29,7 +29,10 @@ pipeline {
     stage('Deploy dockerHub image') {
       steps {
         script {
-          docker.withRegistry('', registryCredential) {
+          /* docker.withRegistry('', registryCredential) {
+            dockerImage.push()
+          } */
+          docker.withRegistry('http://localhost:5000') {
             dockerImage.push()
           }
         }
