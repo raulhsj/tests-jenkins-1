@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "raulhsj/jenkins-node-sample"
-    registryCredential = '3b10e746-e780-43ff-bf9c-70792aad6d47'
+    registryCredential = 'raulhsj-DockerHub'
     dockerImage = ''
   }
   agent any
@@ -29,12 +29,12 @@ pipeline {
     stage('Deploy dockerHub image') {
       steps {
         script {
-          /* docker.withRegistry('', registryCredential) {
-            dockerImage.push()
-          } */
-          docker.withRegistry('http://localhost:5000') {
+          docker.withRegistry('', registryCredential) {
             dockerImage.push()
           }
+          /* docker.withRegistry('http://localhost:5000') {
+            dockerImage.push()
+          } */
         }
       }
     }
